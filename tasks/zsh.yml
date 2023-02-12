@@ -23,5 +23,5 @@
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
     dest: '~/.oh-my-zsh/plugins/zsh-autosuggestions'
   tags: *tags_for_zsh_tasks
-- name: Remove config, to be synched with .dotfiles later
+- name: Remove zshrc, to be synched with .dotfiles later
   shell: rm ~/.zshrc
