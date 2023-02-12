@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  connection: local
+  tags: always
+
+  vars:
+    source_key: "./.ssh/id_ed25519"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+
+  pre_tasks:
+    - name: pre-run | update package cache (Debian, Ubuntu) 
+      become: true
+      tags: always
+      apt: update_cache=yes
+      changed_when: False
+      when: ansible_distribution in ["Debian", "Ubuntu"]
+    - name: Just a temporary check task
+      shell: echo "Hello, World! source_key={{ source_key }} | dest_key={{ dest_key }} |"
+
+  tasks:
+    - import_tasks: tasks/ssh.yml
+    - import_tasks: tasks/zsh.yml
+    - import_tasks: tasks/dotfiles.yml
