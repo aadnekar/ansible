@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ $1 == "-d" ]]
+    ansible-playbook --ask-vault-password -vvv local.yml
+else
+    ansible-playbook --ask-vault-password local.yml
+fi
+
